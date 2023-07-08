@@ -1,0 +1,7 @@
+streamlit==1.24.0
+openai
+langchain
+tiktoken
+chromadb
+pypdf
+chardet
