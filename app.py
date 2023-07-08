@@ -115,7 +115,7 @@ if openai_api_key:
                     stringio = StringIO(file.getvalue().decode("utf-8"))
                     # To read file as string:
                     loader = stringio.read()
-                    filename = os.path.join("docs",'text.txt')
+                    filename =  os.path.join('docs', file.name)
                     # filename = 'docs/text.txt'
                     with open(filename,"wb") as f:
                             f.write(file.getbuffer())
