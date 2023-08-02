@@ -41,7 +41,7 @@ with a:
     st.title("CHATBOT")
     global openai_api_key
     openai_api_key = st.text_input('OpenAI API Key', type='password')
-if openai_api_key:
+try:
     @st.cache_resource
     def llm():
         model = OpenAI(temperature=0.0, openai_api_key=openai_api_key)
@@ -180,3 +180,5 @@ if openai_api_key:
                 st.markdown(response)
             # Add assistant response to chat history
             st.session_state.messages.append({"role": "assistant", "content": response})
+except:
+    pass
