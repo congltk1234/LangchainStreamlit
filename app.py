@@ -151,7 +151,7 @@ if openai_api_key:
                 # st.chat_message("user").markdown(query)
                 llm_chain.memory.chat_memory.add_user_message(query)
                 # Add user message to chat history
-                st.session_state.messages.append({"role": "user", "content": query})
+                # st.session_state.messages.append({"role": "user", "content": query})
                 response = llm_summarize.run(documents)
                 # chain({"input_documents": docs}, return_only_outputs=True)
 
