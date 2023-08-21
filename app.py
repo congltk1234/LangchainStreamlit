@@ -41,7 +41,7 @@ with a:
     st.title("CHATBOT")
     global openai_api_key
     openai_api_key = st.text_input('OpenAI API Key', type='password')
-try:
+if openai_api_key:
     @st.cache_resource
     def llm():
         model = OpenAI(temperature=0.0, openai_api_key=openai_api_key)
@@ -115,7 +115,7 @@ try:
                     stringio = StringIO(file.getvalue().decode("utf-8"))
                     # To read file as string:
                     loader = stringio.read()
-                    filename =  os.path.join('docs', file.name)
+                    filename = os.path.join("docs",'text.txt')
                     # filename = 'docs/text.txt'
                     with open(filename,"wb") as f:
                             f.write(file.getbuffer())
@@ -144,7 +144,7 @@ try:
         if st.sidebar.button('Summarize'):
             with a:
                 query = 'Summarize uploaded documents'
-                st.chat_message("user").markdown(query)
+                # st.chat_message("user").markdown(query)
                 llm_chain.memory.chat_memory.add_user_message(query)
                 # Add user message to chat history
                 st.session_state.messages.append({"role": "user", "content": query})
@@ -152,10 +152,10 @@ try:
                 # chain({"input_documents": docs}, return_only_outputs=True)
 
                 with st.chat_message("assistant"):
-                    st.markdown(response)
+                    st.markdown('SUMMARIZE:'+response)
                 llm_chain.memory.chat_memory.add_ai_message(response)
                 # Add assistant response to chat history
-                st.session_state.messages.append({"role": "assistant", "content": response})
+                st.session_state.messages.append({"role": "assistant", "content": 'SUMMARIZE:'+response})
 
 
     st.sidebar.button("Clear", on_click=clear_msg)
@@ -180,5 +180,3 @@ try:
                 st.markdown(response)
             # Add assistant response to chat history
             st.session_state.messages.append({"role": "assistant", "content": response})
-except:
-    pass
